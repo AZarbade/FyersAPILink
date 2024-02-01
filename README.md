@@ -4,10 +4,9 @@ FyersAPILink is an educational project that connects to the Fyers broker using i
 
 ## Features
 
-- Seamless integration with Fyers broker's fyers_apiv3.
-- Retrieve historical data for in-depth analysis.
-- Effortlessly place orders and manage trading activities.
-- Enhance your trading experience with precise control.
+- WORK IN PROGRESS
+- CURRENT PROJECT JUST
+- SERVES AS A BASE FRAMEWORK
 
 
 ## <span style="color:red"> Caution </span>
