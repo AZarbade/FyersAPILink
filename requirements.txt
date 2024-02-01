@@ -1,0 +1,7 @@
+fyers-apiv3
+numpy
+pandas
+pyotp
+requests
+python-dotenv
+matplotlib
