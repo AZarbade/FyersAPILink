@@ -29,6 +29,6 @@ If you'd like to contribute to the project, feel free to create a pull request.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](LICENSE).
 
 <span style="color:red">Note: This project is not affiliated with Fyers or any financial institution. It is intended for educational purposes only.</span>
