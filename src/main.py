@@ -1,7 +1,7 @@
 import os
 import argparse
 from dotenv import load_dotenv
-from util import Fyers
+from fyers import Fyers
 
 # load environment variables
 load_dotenv()
