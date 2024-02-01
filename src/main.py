@@ -28,4 +28,6 @@ def main():
     client = broker.start_client()
     print(client.get_profile())
 
-main()
+
+if __name__ == "__main__":
+    main()
