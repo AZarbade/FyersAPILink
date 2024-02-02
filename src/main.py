@@ -42,7 +42,7 @@ def main():
 
     history = GetHistorical(client, stock_info)
     # data = history.fetch_data()
-    history.save_data('stock_data.csv')
+    history.save_data('../data/sbin_15min_2023.csv')
 
 
 if __name__ == "__main__":
