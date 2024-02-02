@@ -163,3 +163,4 @@ cython_debug/
 access_token.txt
 /logs
 .env
+/data
