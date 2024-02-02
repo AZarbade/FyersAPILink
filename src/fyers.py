@@ -2,7 +2,6 @@ import os
 import time
 import base64
 import datetime
-from pyotp import TOTP
 import requests
 from fyers_apiv3 import fyersModel
 from urllib.parse import parse_qs, urlparse
