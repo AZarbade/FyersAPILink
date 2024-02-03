@@ -3,7 +3,8 @@ import argparse
 from dotenv import load_dotenv
 from fyers import Fyers
 from utils import GetHistorical
-
+import pandas as pd 
+from sqlalchemy import create_engine
 
 # utility function for parsing runtime arguments
 def parse_arguments():
@@ -12,34 +13,43 @@ def parse_arguments():
     parser.add_argument("--pin", type=str, required=True, help="PIN for authentication")
     return parser.parse_args()
 
-def main():
 
-    # load environment variables
+if __name__ == "__main__":
     load_dotenv()
+    # user details
     user_details = {
         "username": os.getenv("USERNAME"),
         "client_id": os.getenv("CLIENT_ID"),
         "redirect_uri": os.getenv("REDIRECT_URI"),
-        "secret_key": os.getenv("SECRET_KEY")
-    }
+        "secret_key": os.getenv("SECRET_KEY")}
 
-    # stock information
-    stock_info = {
-        "symbol": "NSE:SBIN-EQ",
-        "resolution": "15",
-        "date_format": "1",
-        "range_from": "2023-01-01",
-        "range_to": "2023-07-01",
-        "cont_flag": "1",
-    }
-
+    # broker API setup
     broker = Fyers(user_details)
     if not os.path.exists('access_token.txt'):
         args = parse_arguments()
         broker.start_session(args.pin, args.totp)
     client = broker.start_client()
-    print(client.get_profile())
+    
+    # database setup
+    engine = create_engine("mysql+pymysql://root:noir@192.168.1.5:3306/nifty_100")
 
+    # data fetching loop
+    symbols = pd.read_csv("symbol_lists/nifty_100.csv")
+    for index, row in symbols.iterrows():
+        symbol = row["Symbol"]
 
-if __name__ == "__main__":
-    main()
+        stock_info = {
+        "symbol": symbol,
+        "resolution": "15",
+        "date_format": "1",
+        "range_from": "2024-01-01",
+        "range_to": "2024-01-15",
+        "cont_flag": "1",}
+
+        data = pd.DataFrame(GetHistorical(client, stock_info).fetch_data())
+        print(f"Fetching data for {symbol}")
+
+        data.to_sql(symbol, engine, if_exists="replace")
+        print(f"Data for {symbol} stored in database")
+    
+    print("Data fetching complete")
