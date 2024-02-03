@@ -5,3 +5,4 @@ pyotp
 requests
 python-dotenv
 matplotlib
+sqlalchemy
