@@ -11,10 +11,10 @@ class Fyers:
     API_BASE_URL = "https://api-t2.fyers.in/vagator/v2/"
     TOKEN_URL = "https://api-t1.fyers.in/api/v3/token"
     LOG_PATH = os.path.join(os.getcwd(), "logs/")
+    if not os.path.exists(LOG_PATH):
+        os.makedirs(LOG_PATH)
 
     def __init__(self, user_details: dict) -> None:
-        # self.pin = pin
-        # self.totp = totp
         self.username = user_details['username']
         self.client_id = user_details['client_id']
         self.redirect_uri = user_details['redirect_uri']

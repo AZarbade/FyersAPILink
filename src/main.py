@@ -38,11 +38,11 @@ def main():
         args = parse_arguments()
         broker.start_session(args.pin, args.totp)
     client = broker.start_client()
-    # print(client.get_profile())
+    print(client.get_profile())
 
-    history = GetHistorical(client, stock_info)
+    # history = GetHistorical(client, stock_info)
     # data = history.fetch_data()
-    history.save_data('../data/sbin_15min_2023.csv')
+    # history.save_data('../data/sbin_15min_2023.csv')
 
 
 if __name__ == "__main__":
