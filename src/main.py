@@ -40,10 +40,6 @@ def main():
     client = broker.start_client()
     print(client.get_profile())
 
-    # history = GetHistorical(client, stock_info)
-    # data = history.fetch_data()
-    # history.save_data('../data/sbin_15min_2023.csv')
-
 
 if __name__ == "__main__":
     main()
