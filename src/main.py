@@ -1,4 +1,4 @@
-mport os
+import os
 import argparse
 from dotenv import load_dotenv
 from fyers import Fyers
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     load_dotenv()
     # user details
     user_details = {
-        "username": os.getenv("USERNAME"),
+        "username": os.getenv("USER_ID"),
         "client_id": os.getenv("CLIENT_ID"),
         "redirect_uri": os.getenv("REDIRECT_URI"),
         "secret_key": os.getenv("SECRET_KEY")}
@@ -29,6 +29,7 @@ if __name__ == "__main__":
         args = parse_arguments()
         broker.start_session(args.pin, args.totp)
     client = broker.start_client()
+    print(client.get_profile())
     
     # database setup
     db_pass = os.dotenv("DB_PASSWORD")
@@ -52,5 +53,5 @@ if __name__ == "__main__":
 
         data.to_sql(symbol, engine, if_exists="replace")
         print(f"Data for {symbol} stored in database")
-    
+
     print("Data fetching complete")

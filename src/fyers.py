@@ -15,10 +15,10 @@ class Fyers:
         os.makedirs(LOG_PATH)
 
     def __init__(self, user_details: dict) -> None:
-        self.username = user_details['username']
-        self.client_id = user_details['client_id']
-        self.redirect_uri = user_details['redirect_uri']
-        self.secret_key = user_details['secret_key']
+        self.username = user_details["username"]
+        self.client_id = user_details["client_id"]
+        self.redirect_uri = user_details["redirect_uri"]
+        self.secret_key = user_details["secret_key"]
         self.session = requests.Session()
 
     def send_login_otp(self):
