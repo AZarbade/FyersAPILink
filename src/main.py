@@ -1,4 +1,4 @@
-import os
+mport os
 import argparse
 from dotenv import load_dotenv
 from fyers import Fyers
@@ -31,10 +31,11 @@ if __name__ == "__main__":
     client = broker.start_client()
     
     # database setup
-    engine = create_engine("mysql+pymysql://root:noir@192.168.1.5:3306/nifty_100")
+    db_pass = os.dotenv("DB_PASSWORD")
+    engine = create_engine("mysql+pymysql://root:db_pass@192.168.1.5:3306/nifty_50")
 
     # data fetching loop
-    symbols = pd.read_csv("symbol_lists/nifty_100.csv")
+    symbols = pd.read_csv("symbol_lists/nifty_50.csv")
     for index, row in symbols.iterrows():
         symbol = row["Symbol"]
 
@@ -43,7 +44,7 @@ if __name__ == "__main__":
         "resolution": "15",
         "date_format": "1",
         "range_from": "2024-01-01",
-        "range_to": "2024-01-15",
+        "range_to": "2024-02-01",
         "cont_flag": "1",}
 
         data = pd.DataFrame(GetHistorical(client, stock_info).fetch_data())
